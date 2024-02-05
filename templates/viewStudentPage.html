@@ -40,14 +40,22 @@
 <body>
 
 <div class="container" style="color: rgb(255, 90, 205);">
+
+    
+    <!-- <li class="nav-item">
+        <a class="nav-link" href="{% url "createStudenPage" %}">Create A student</a>
+    </li> -->
     <h2>View Students</h2>
+    <td>
+        <a href="{% url 'createStudenPage' %}" class="btn btn-warning">Create A student</a>
+    </td>
     <table>
         <thead>
             <tr>
                 <th>Student Name</th>
                 <th>roll</th>
                 <th>Age</th>
-                <th>Subjects</th>
+                <!-- <th>Subjects</th> -->
                 <th> student result</th>
                 <th> create student result</th>
             </tr>
@@ -59,13 +67,18 @@
                     <td>{{ student.roll }}</td>
                     <td>{{ student.Age }}</td>
                     
-                        {% for subject in student.Subjects.all %}
+                        <!-- {% for subject in student.Subjects.all %}
                             {{ subject.SubjectName }},
-                        {% endfor %}
+                        {% endfor %} -->
                     </td>
+
+                    {% if student.student_marksheet.all %}
                     <td>
-                        <a href="{% url 'viewMarksPage' student.id %}" class="btn btn-primary">result</a>
+                        <a href="{% url 'viewMarksPage' student.id %}" class="btn btn-primary">View result</a>
                     </td>
+                    {% endif %}
+                    
+                    
                     <td>
                         <a href="{% url 'inputMarksPage' student.id %}" class="btn btn-warning">create result</a>
                     </td>

@@ -28,7 +28,7 @@ class studentModel(models.Model):
     
 
 class MarkModel(models.Model):
-    student = models.ForeignKey(studentModel, on_delete=models.CASCADE)
+    student = models.ForeignKey(studentModel, on_delete=models.CASCADE, related_name='student_marksheet')
     subject = models.ForeignKey(SubjectModel, on_delete=models.CASCADE)
     marks = models.FloatField()
 
