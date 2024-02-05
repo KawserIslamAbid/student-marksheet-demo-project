@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Home - Student Database Website</title>
+{% endblock %}
+
+
+
+<!-- --------------------------------- Body start ----------------------------------- -->
+{% block body_content %}
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+
+        {% for prof in all_active_profile %}
+        <div class="col">
+            <div class="card h-100" style="width: 18rem;">
+                <img src="{{prof.image.url}}" class="card-img-top" alt="{{prof.name}}" style="height:300px;">
+                <div class="card-body">
+                    <h5 class="card-title">{{prof.name}}</h5>
+                    <p class="card-text" style="margin-bottom: 5px;">Occupation: {{prof.occupation}}</p>
+                    <p class="card-text" style="margin-bottom: 5px;">DOF: {{prof.date_of_birth}}</p>
+                    <p class="card-text" style="margin-bottom: 10px;">Number: {{prof.phone_number}}</p>
+                    <div style="text-align: center;">
+                        <a href="#" class="btn btn-primary">UPDATE</a>
+                        <a href="{% url 'delete' prof.id %}" class="btn btn-danger">DELETE</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+{% endblock %}
+
+<!-- --------------------------------- Body end ----------------------------------- -->

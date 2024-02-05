@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block body_content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Students</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+/*  */
+
+        th {
+            background-color: #dba6f5;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" style="color: rgb(255, 90, 205);">
+    <h2>View Students</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Student Name</th>
+                <th>roll</th>
+                <th>Age</th>
+                <th>Subjects</th>
+                <th> student result</th>
+                <th> create student result</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+                <tr>
+                    <td>{{ student.StudentName }}</td>
+                    <td>{{ student.roll }}</td>
+                    <td>{{ student.Age }}</td>
+                    
+                        {% for subject in student.Subjects.all %}
+                            {{ subject.SubjectName }},
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{% url 'viewMarksPage' student.id %}" class="btn btn-primary">result</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'inputMarksPage' student.id %}" class="btn btn-warning">create result</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
+
+
+
+
+{% endblock %}
